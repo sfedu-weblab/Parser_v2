@@ -1,0 +1,10 @@
+{
+  "name": "Parser_v2",
+  "version": "1.0.0",
+  "dependencies": {
+    "fs": "0.0.1-security",
+    "pdf-text": "^0.4.0",
+    "pdfjs-dist": "^2.9.359",
+    "puppeteer": "^10.2.0"
+  }
+}
