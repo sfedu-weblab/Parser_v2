@@ -1,1 +1,0 @@
-{"PDFFormatVersion":"1.7","IsAcroFormPresent":false,"IsXFAPresent":false,"Author":"KONSTANTIN","Creator":"Microsoft Word","CreationDate":"D:20200214175020+00'00'","ModDate":"D:20200214175020+00'00'"}
