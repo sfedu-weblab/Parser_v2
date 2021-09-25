@@ -1,0 +1,1 @@
+{"PDFFormatVersion":"1.6","IsAcroFormPresent":false,"IsXFAPresent":false,"Title":"<4D6963726F736F667420576F7264202D20C1E5E7EEEFE0F1EDEEF1F2FC20FDEAEEEDEEECE8F7E5F1EAE8F520F1E8F1F2E5EC>","Author":"123","Creator":"PScript5.dll Version 5.2.2","Producer":"Acrobat Distiller 9.5.5 (Windows)","CreationDate":"D:20210517151409+03'00'","ModDate":"D:20210519133744+03'00'"}
