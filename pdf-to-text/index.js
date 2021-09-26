@@ -1,14 +1,16 @@
 const fs = require('fs');
 const pdf = require('pdf-parse');
 
+const {dir__path, PARSE_OPTIONS} = require('./const')
 
-const ParseTxtFrom = (in__dir, out__dir) => {
+
+const ParseTxtFrom = (in__dir, out__dir, options) => {
 	let dataBuffer = fs.readdirSync(in__dir);
 	
 	dataBuffer.forEach(file_name_extend => {
 	
 		filedata = fs.readFileSync(in__dir + file_name_extend)	
-		pdf(filedata).then(function(data, err) {
+		pdf(filedata, options).then(function(data, err) {
 
 			if (err) console.log(err);
 
@@ -16,7 +18,10 @@ const ParseTxtFrom = (in__dir, out__dir) => {
 
 			console.log(`Number of pages: ${data.numrender}`)
 
+			console.log(`Filename: ${file_name_extend}`)
+
 			let result = data.text.replace(/-\n/gi, "")
+
 
 			fs.writeFileSync(out__dir +'metadata/' + file_name_extend.replace('.pdf', '') + '.txt', JSON.stringify(data.info))
 
@@ -32,9 +37,5 @@ const ParseTxtFrom = (in__dir, out__dir) => {
 }
 
 
-const in__dir = '../storage/science-articles/pdf/'
-
-const out__dir = '../storage/science-articles/txt/'
-
-ParseTxtFrom(in__dir, out__dir)
+ParseTxtFrom(dir__path.input, dir__path.output, PARSE_OPTIONS)
 
