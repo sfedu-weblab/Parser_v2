@@ -20,6 +20,39 @@ async function autoScroll(page){
   });
 }
 
+/**
+ * ИНФОРМАЦИОННАЯ БЕЗОПАСНОСТЬ	15385
+ * МЕТОДЫ И СИСТЕМЫ ЗАЩИТЫ ИНФОРМАЦИИ, ИНФОРМАЦИОННАЯ БЕЗОПАСНОСТЬ	685
+ * ИНФОРМАЦИОННАЯ БЕЗОПАСНОСТЬ ЛИЧНОСТИ	136
+ * МЕЖДУНАРОДНАЯ ИНФОРМАЦИОННАЯ БЕЗОПАСНОСТЬ	129
+ * ИНФОРМАЦИОННАЯ БЕЗОПАСНОСТЬ ДЕТЕЙ	76
+ * ИНФОРМАЦИОННАЯ БЕЗОПАСНОСТЬ ПРЕДПРИЯТИЯ	57
+ * ИНФОРМАЦИОННАЯ БЕЗОПАСНОСТЬ ГОСУДАРСТВА	22
+ * НЕЙРОСЕТИ	457
+ * ИСКУССТВЕННЫЕ НЕЙРОСЕТИ	22
+ * ОБУЧЕНИЕ НЕЙРОСЕТИ	17
+ * СВЕРТОЧНЫЕ НЕЙРОСЕТИ	15
+ * РЕКУРРЕНТНЫЕ НЕЙРОСЕТИ	6
+ * ИСКУССТВЕННЫЙ ИНТЕЛЛЕКТ	11864
+ * ИГРОВОЙ ИСКУССТВЕННЫЙ ИНТЕЛЛЕКТ	18
+ * СИЛЬНЫЙ ИСКУССТВЕННЫЙ ИНТЕЛЛЕКТ	38
+ * РАСПРЕДЕЛЕННЫЙ ИСКУССТВЕННЫЙ ИНТЕЛЛЕКТ	13
+ * ИСКУССТВЕННЫЙ ИНТЕЛЛЕКТ В ОБРАЗОВАНИИ	16
+ * РОБОТОТЕХНИКА	3297
+ * ОБРАЗОВАТЕЛЬНАЯ РОБОТОТЕХНИКА	546
+ * МЕДИЦИНСКАЯ РОБОТОТЕХНИКА	56
+ * ГРУППОВАЯ РОБОТОТЕХНИКА	54
+ * СОЦИАЛЬНАЯ РОБОТОТЕХНИКА	48
+ * МОБИЛЬНАЯ РОБОТОТЕХНИКА	36
+ * ПОДВОДНАЯ РОБОТОТЕХНИКА	33
+ * ПРОМЫШЛЕННАЯ РОБОТОТЕХНИКА	32
+ * МАТЕМАТИКА	30120
+ * ВЫЧИСЛИТЕЛЬНАЯ МАТЕМАТИКА	3002
+ * ВЫСШАЯ МАТЕМАТИКА	1779
+ * ЭЛЕМЕНТАРНАЯ МАТЕМАТИКА	1442
+ * ПРИКЛАДНАЯ МАТЕМАТИКА	1351
+ * ЕСТЕСТВЕННЫЕ НАУКИ. МАТЕМАТИКА	1171
+ */
 (async () => {
   const catName = 'Информационная безопасность'
   const catLink = 'https://www.elibrary.ru/keyword_items.asp?id=976642&show_option=0'
@@ -43,7 +76,7 @@ async function autoScroll(page){
   await autoScroll(page);
 
   const data = await page.evaluate(() => {
-    let a = $('#restab img[src="/images/download_green.png"]').parents('#restab tr').children('td[align="left"]').children('a')
+    let a = $('#restab tr').children('td[align="left"]').children('a')
 
     let data = []
     for (let i=0; i<a.length; i++) {data.push($(a[i]).attr('href'))}
@@ -63,7 +96,7 @@ async function autoScroll(page){
     await autoScroll(page)
 
     const data = await page.evaluate(() => {
-      let a = $('#restab img[src="/images/download_green.png"]').parents('#restab tr').children('td[align="left"]').children('a')
+      let a = $('#restab tr').children('td[align="left"]').children('a')
 
       let data = []
       for (let i=0; i<a.length; i++) {data.push($(a[i]).attr('href'))}
