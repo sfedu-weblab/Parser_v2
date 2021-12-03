@@ -6,6 +6,6 @@
     "pdf-parse": "^1.1.1",
     "pdf-text": "^0.4.0",
     "pdfjs-dist": "^2.9.359",
-    "puppeteer": "^10.2.0"
+    "puppeteer": "^10.4.0"
   }
 }

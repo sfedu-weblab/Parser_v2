@@ -46,17 +46,28 @@ const {dir__path, PARSE_OPTIONS} = require('./const');
         const data = await page.evaluate(() => {
             let a = $('tr div#abstract1').children('p[align="justify"]')[0].innerText
 
-            let keywords = $('a').filter((index, keyword) => keyword.toString().match(/keyword_items.asp/)).map((index, keyword) => keyword.innerText.toLowerCase())
-
-
-            let data = `${a}<SPLIT>${keywords}`
+            // let data = `${a}<SPLIT>${keywords}`
     
-        return data
-    })
+            return a
+        })
 
-    console.log(data)
+        const keywords = await page.evaluate(() => {
 
-    fs.writeFileSync(`${dir__path.output}/content/${index}.txt`, data)
+            let keywords = $('a').filter((index, keyword) => keyword.toString().match(/keyword_items.asp/)).map((index, keyword) => keyword.innerText.toLowerCase())
+    
+            return keywords
+        })
+        let new_key = []
+        for (let index = 0; index < keywords.length; index++) {
+            new_key.push(keywords[index])
+            
+        }
+
+        console.log(new_key)
+
+    
+
+    fs.writeFileSync(`${dir__path.output}/content/${index}.txt`, `${data}<SPLIT>${new_key}`)
 
     await page.waitForTimeout(5000)
 
