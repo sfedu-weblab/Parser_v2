@@ -59,19 +59,24 @@ const {dir__path, PARSE_OPTIONS} = require('./const');
 
             const stat = fs.statSync('../cache/' + cache_x[0] + '/' + dataXBuffer[0])
             let cont;
+            let num;
 
             if (stat.size === 0) {
                 fs.unlinkSync('../cache/' + cache_x[0] + '/' + dataXBuffer[0])
                 cont = fs.readFileSync('../cache/' + cache_x[0] + '/' + dataXBuffer[1]).toString().split(','); // read file and convert to array by line break
+                num = 1;
             }
-            else cont = fs.readFileSync('../cache/' + cache_x[0] + '/' + dataXBuffer[0]).toString().split(','); // read file and convert to array by line break
+            else{ 
+                cont = fs.readFileSync('../cache/' + cache_x[0] + '/' + dataXBuffer[0]).toString().split(',');
+                num = 0;
+            } // read file and convert to array by line break
 
             
 
             cont.shift(); // remove the the first element from array
             cont = cont.join(','); // convert array back to string
 
-            fs.writeFileSync('../cache/' + cache_x[0] + '/' + dataXBuffer[0], cont)
+            fs.writeFileSync('../cache/' + cache_x[0] + '/' + dataXBuffer[num], cont)
 
 
             const data = await page.evaluate(() => {
