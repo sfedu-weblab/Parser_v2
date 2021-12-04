@@ -75,6 +75,6 @@ typings/
 # FuseBox cache
 .fusebox/
 
+storage
 cache
 content.rar
-storage

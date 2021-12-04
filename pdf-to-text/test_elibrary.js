@@ -22,6 +22,7 @@ const {dir__path, PARSE_OPTIONS} = require('./const');
                     
         });
 
+        
         reload_links.push(await links.flat())
 
     }
@@ -29,9 +30,7 @@ const {dir__path, PARSE_OPTIONS} = require('./const');
 
     const final_links= await reload_links.flat()
 
-    final_links.forEach(element => {
-        console.log(element)
-    });
+    
 
     console.log(final_links.length)
 
@@ -51,9 +50,30 @@ const {dir__path, PARSE_OPTIONS} = require('./const');
     // await page.waitForNavigation()
 
     let lol = 0;
-    for (let index = 0; index < final_links.length; index++) {
+    for (let index = fs.readdirSync('../storage/content').length; index < final_links.length; index++) {
         try {
             await page.goto("https://www.elibrary.ru" + final_links[index], {waitUntil: 'networkidle0'})
+
+            const cache_x = fs.readdirSync('../cache/')
+            const dataXBuffer = fs.readdirSync('../cache/' + cache_x[0])
+
+            const stat = fs.statSync('../cache/' + cache_x[0] + '/' + dataXBuffer[0])
+            let cont;
+
+            if (stat.size === 0) {
+                fs.unlinkSync('../cache/' + cache_x[0] + '/' + dataXBuffer[0])
+                cont = fs.readFileSync('../cache/' + cache_x[0] + '/' + dataXBuffer[1]).toString().split(','); // read file and convert to array by line break
+            }
+            else cont = fs.readFileSync('../cache/' + cache_x[0] + '/' + dataXBuffer[0]).toString().split(','); // read file and convert to array by line break
+
+            
+
+            cont.shift(); // remove the the first element from array
+            cont = cont.join(','); // convert array back to string
+
+            fs.writeFileSync('../cache/' + cache_x[0] + '/' + dataXBuffer[0], cont)
+
+
             const data = await page.evaluate(() => {
                 let a = $('tr div#abstract1').children('p[align="justify"]')[0].innerText
     
