@@ -77,7 +77,7 @@ const {dir__path, PARSE_OPTIONS} = require('./const');
         lol = lol + 1;
         console.log(lol)
     
-    fs.writeFileSync(`${dir__path.output}/${index + 1311}.txt`, `${data}<SPLIT>${new_key}`)
+    fs.writeFileSync(`${dir__path.output}/${index}.txt`, `${data}<SPLIT>${new_key}`)
             
         } catch (error) {
             
