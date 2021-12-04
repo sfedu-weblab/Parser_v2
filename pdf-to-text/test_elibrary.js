@@ -54,29 +54,7 @@ const {dir__path, PARSE_OPTIONS} = require('./const');
         try {
             await page.goto("https://www.elibrary.ru" + final_links[index], {waitUntil: 'networkidle0'})
 
-            const cache_x = fs.readdirSync('../cache/')
-            const dataXBuffer = fs.readdirSync('../cache/' + cache_x[0])
-
-            const stat = fs.statSync('../cache/' + cache_x[0] + '/' + dataXBuffer[0])
-            let cont;
-            let num;
-
-            if (stat.size === 0) {
-                fs.unlinkSync('../cache/' + cache_x[0] + '/' + dataXBuffer[0])
-                cont = fs.readFileSync('../cache/' + cache_x[0] + '/' + dataXBuffer[1]).toString().split(','); // read file and convert to array by line break
-                num = 1;
-            }
-            else{ 
-                cont = fs.readFileSync('../cache/' + cache_x[0] + '/' + dataXBuffer[0]).toString().split(',');
-                num = 0;
-            } // read file and convert to array by line break
-
             
-
-            cont.shift(); // remove the the first element from array
-            cont = cont.join(','); // convert array back to string
-
-            fs.writeFileSync('../cache/' + cache_x[0] + '/' + dataXBuffer[num], cont)
 
 
             const data = await page.evaluate(() => {
@@ -103,6 +81,31 @@ const {dir__path, PARSE_OPTIONS} = require('./const');
         console.log(lol)
     
     fs.writeFileSync(`${dir__path.output}/${index}.txt`, `${data}<SPLIT>${new_key}`)
+    const cache_x = fs.readdirSync('../cache/')
+            const dataXBuffer = fs.readdirSync('../cache/' + cache_x[0])
+
+            const stat = fs.statSync('../cache/' + cache_x[0] + '/' + dataXBuffer[0])
+            let cont;
+            let num;
+
+            console.log('File: ' +dataXBuffer[0] + " " + cache_x[0])
+
+            if (stat.size === 0) {
+                fs.unlinkSync('../cache/' + cache_x[0] + '/' + dataXBuffer[0])
+                cont = fs.readFileSync('../cache/' + cache_x[0] + '/' + dataXBuffer[1]).toString().split(','); // read file and convert to array by line break
+                num = 1;
+            }
+            else{ 
+                cont = fs.readFileSync('../cache/' + cache_x[0] + '/' + dataXBuffer[0]).toString().split(',');
+                num = 0;
+            } // read file and convert to array by line break
+
+            
+
+            cont.shift(); // remove the the first element from array
+            cont = cont.join(','); // convert array back to string
+
+            fs.writeFileSync('../cache/' + cache_x[0] + '/' + dataXBuffer[num], cont)
             
         } catch (error) {
             // if (error.te instanceof ReferenceError) console.log(error)
@@ -117,7 +120,7 @@ const {dir__path, PARSE_OPTIONS} = require('./const');
     
     // if(index % 1000 === 0 ) await page.waitForTimeout(100000)
     // else if(index % 50 === 0 ) await page.waitForTimeout(10000)
-    await page.waitForTimeout(500)
+    await page.waitForTimeout(5000)
 
 
 
