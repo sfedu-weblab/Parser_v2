@@ -105,13 +105,19 @@ const {dir__path, PARSE_OPTIONS} = require('./const');
     fs.writeFileSync(`${dir__path.output}/${index}.txt`, `${data}<SPLIT>${new_key}`)
             
         } catch (error) {
-            
+            // if (error.te instanceof ReferenceError) console.log(error)
+            if(error.message.includes("ReferenceError")) {
+                console.log(error)
+                process.exit()
+            }
+            // cont = fs.readFileSync('../cache/dieFile').toString().split(',');
+
+            // fs.writeFileSync('../cache/' + cache_x[0] + '/' + dataXBuffer[num], cont)
         }
     
-    if(index % 1000 === 0 ) await page.waitForTimeout(100000)
-    else if(index % 50 === 0 ) await page.waitForTimeout(10000)
-    else if(index % 10 === 0 ) await page.waitForTimeout(5000)
-    else await page.waitForTimeout(2000)
+    // if(index % 1000 === 0 ) await page.waitForTimeout(100000)
+    // else if(index % 50 === 0 ) await page.waitForTimeout(10000)
+    await page.waitForTimeout(500)
 
 
 
