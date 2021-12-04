@@ -40,36 +40,53 @@ const {dir__path, PARSE_OPTIONS} = require('./const');
         headless: false,
     });
     const page = await browser.newPage();
+
+    // await page.setDefaultNavigationTimeout(300000)
+    // await page.goto("https://www.elibrary.ru/")
+
+    // await page.type('#login', 'dsidorenko', { delay: 100 });
+    // await page.type('#password', '123456qwe', { delay: 100 });
+    // await page.click('.butred')
+
+    // await page.waitForNavigation()
+
+    let lol = 0;
     for (let index = 0; index < final_links.length; index++) {
-        await page.goto("https://www.elibrary.ru" + final_links[index], {waitUntil: 'networkidle0'})
-
-        const data = await page.evaluate(() => {
-            let a = $('tr div#abstract1').children('p[align="justify"]')[0].innerText
-
-            // let data = `${a}<SPLIT>${keywords}`
+        try {
+            await page.goto("https://www.elibrary.ru" + final_links[index], {waitUntil: 'networkidle0'})
+            const data = await page.evaluate(() => {
+                let a = $('tr div#abstract1').children('p[align="justify"]')[0].innerText
     
-            return a
-        })
-
-        const keywords = await page.evaluate(() => {
-
-            let keywords = $('a').filter((index, keyword) => keyword.toString().match(/keyword_items.asp/)).map((index, keyword) => keyword.innerText.toLowerCase())
+                // let data = `${a}<SPLIT>${keywords}`
+        
+                return a
+            })
     
-            return keywords
-        })
-        let new_key = []
+            const keywords = await page.evaluate(() => {
+    
+                let keywords = $('a').filter((index, keyword) => keyword.toString().match(/keyword_items.asp/)).map((index, keyword) => keyword.innerText.toLowerCase())
+        
+                return keywords
+            })
+
+            let new_key = []
         for (let index = 0; index < keywords.length; index++) {
             new_key.push(keywords[index])
             
         }
-
-        console.log(new_key)
-
+        lol = lol + 1;
+        console.log(lol)
     
-
-    fs.writeFileSync(`${dir__path.output}/content/${index}.txt`, `${data}<SPLIT>${new_key}`)
-
-    await page.waitForTimeout(5000)
+    fs.writeFileSync(`${dir__path.output}/${index + 1311}.txt`, `${data}<SPLIT>${new_key}`)
+            
+        } catch (error) {
+            
+        }
+    
+    if(index % 1000 === 0 ) await page.waitForTimeout(100000)
+    else if(index % 50 === 0 ) await page.waitForTimeout(10000)
+    else if(index % 10 === 0 ) await page.waitForTimeout(5000)
+    else await page.waitForTimeout(2000)
 
 
 

@@ -7,5 +7,5 @@ exports.PARSE_OPTIONS = {
 
 exports.dir__path ={
     input: '../storage/science-articles/pdf/',
-    output: '../storage/science-articles/txt/'
+    output: '../storage/content'
 }

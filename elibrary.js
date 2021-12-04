@@ -54,8 +54,8 @@ async function autoScroll(page){
  * ЕСТЕСТВЕННЫЕ НАУКИ. МАТЕМАТИКА	1171
  */
 (async () => {
-  const catName = 'Информационная безопасность'
-  const catLink = 'https://www.elibrary.ru/keyword_items.asp?id=976642&show_option=0'
+  const catName = 'ВЫЧИСЛИТЕЛЬНАЯ ТЕХНИКА'
+  const catLink = 'https://www.elibrary.ru/keyword_items.asp?id=2336454&show_option=0'
   const login = 'dsidorenko'
   const pass = '123456qwe'
   let pageNumber = 155
@@ -65,15 +65,15 @@ async function autoScroll(page){
   });
   const page = await browser.newPage();
   await page.setDefaultNavigationTimeout(300000)
-  await page.goto("https://www.elibrary.ru/")
+  // await page.goto("https://www.elibrary.ru/")
 
-  await page.type('#login', login, { delay: 100 });
-  await page.type('#password', pass, { delay: 100 });
-  await page.click('.butred')
+  // await page.type('#login', login, { delay: 100 });
+  // await page.type('#password', pass, { delay: 100 });
+  // await page.click('.butred')
 
-  await page.waitForNavigation()
+  // await page.waitForNavigation()
   await page.goto(catLink)
-  await autoScroll(page);
+  // await autoScroll(page);
 
   const data = await page.evaluate(() => {
     let a = $('#restab tr').children('td[align="left"]').children('a')
